@@ -139,6 +139,168 @@
             flex-direction: column;
             align-items: center;
             animation: slideInRight 1.2s ease-out;
+            position: relative;
+        }
+
+        /* Improved hero-right styles */
+        .profile-container {
+            position: relative;
+            margin-bottom: 40px;
+            width: 320px;
+            height: 320px;
+        }
+
+        .profile-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.15), rgba(0, 242, 254, 0.15));
+            animation: morphing 10s infinite ease-in-out alternate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        @keyframes morphing {
+            0% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            }
+            25% {
+                border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+            }
+            50% {
+                border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+            }
+            75% {
+                border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+            }
+            100% {
+                border-radius: 40% 60% 27% 73% / 40% 40% 60% 60%;
+            }
+        }
+
+        .profile-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.3) 0%, transparent 70%);
+            filter: blur(20px);
+            animation: pulse 6s infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(0.8);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+        }
+
+        .profile-visual {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7rem;
+            font-weight: 700;
+            color: #0a0a0a;
+            box-shadow: 
+                0 10px 30px rgba(79, 172, 254, 0.4),
+                inset 0 -5px 15px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .spinning-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px dashed rgba(79, 172, 254, 0.3);
+            animation: spin 20s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .contact-container {
+            background: rgba(10, 10, 15, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 35px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transform: translateY(-20px);
+        }
+
+        .contact-header {
+            font-size: 1.2rem;
+            color: #4facfe;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .contact-item {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .contact-item.full-width {
+            grid-column: span 2;
+        }
+
+        .contact-item:hover {
+            color: #4facfe;
+            border-color: rgba(79, 172, 254, 0.3);
+            background: rgba(79, 172, 254, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.15);
+        }
+
+        .contact-item svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
         }
 
         .hero-title {
@@ -186,59 +348,6 @@
         .hero-cta:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(79, 172, 254, 0.4);
-        }
-
-        .profile-visual {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-            color: #0a0a0a;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 60px rgba(79, 172, 254, 0.3);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .contact-quick {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .contact-item {
-            color: #909090;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            padding: 8px 20px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .contact-item:hover {
-            color: #4facfe;
-            border-color: rgba(79, 172, 254, 0.3);
-            background: rgba(79, 172, 254, 0.05);
-        }
-
-        .contact-item svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
         }
 
         /* Content Grid Layout */
@@ -626,6 +735,37 @@
             margin: 0 auto;
         }
 
+        /* Social Media Icons */
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: rgba(79, 172, 254, 0.1);
+            border-color: rgba(79, 172, 254, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .social-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #4facfe;
+        }
+
         /* Animations */
         @keyframes slideInLeft {
             from {
@@ -667,6 +807,10 @@
                 text-align: center;
                 gap: 40px;
                 padding: 60px 5%;
+            }
+
+            .hero-left .hero-bio {
+                margin: 0 auto 40px auto;
             }
 
             .content-grid {
@@ -713,10 +857,28 @@
                 right: 20px;
             }
 
+            .profile-container {
+                width: 280px;
+                height: 280px;
+            }
+
             .profile-visual {
-                width: 200px;
-                height: 200px;
+                width: 180px;
+                height: 180px;
                 font-size: 5rem;
+            }
+
+            .contact-container {
+                padding: 20px;
+                max-width: 320px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-item.full-width {
+                grid-column: span 1;
             }
 
             .hero-section {
@@ -796,22 +958,48 @@
                 </a>
             </div>
             <div class="hero-right">
-                <div class="profile-visual">
-                    k
+                <div class="profile-container">
+                    <div class="profile-background"></div>
+                    <div class="spinning-circle"></div>
+                    <div class="profile-glow"></div>
+                    <div class="profile-visual">
+                        k
+                    </div>
                 </div>
-                <div class="contact-quick">
-                    <a href="mailto:kellatirupathirao0231@gmail.com" class="contact-item">kellatirupathirao0231@gmail.com</a>
-                    <a href="tel:06303639014" class="contact-item">06303639014</a>
-                    <span class="contact-item">Patel Nagar ramavarappadu</span>
-                    <!-- Social Links Added Here -->
-                    <a href="https://github.com/kellatirupathi/" target="_blank" rel="noopener noreferrer" class="contact-item">
-                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/tirupathi-rao-kella-6b4ba41b8/" target="_blank" rel="noopener noreferrer" class="contact-item">
-                       <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        <span>LinkedIn</span>
-                    </a>
+                
+                <div class="contact-container">
+                    <h3 class="contact-header">Connect With Me</h3>
+                    <div class="contact-grid">
+                        <a href="mailto:kellatirupathirao0231@gmail.com" class="contact-item full-width">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <span>kellatirupathirao0231@gmail.com</span>
+                        </a>
+                        
+                        <a href="tel:06303639014" class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <span>06303639014</span>
+                        </a>
+                        
+                        <span class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <span>Patel Nagar ramavarappadu</span>
+                        </span>
+                    </div>
+                    
+                    <!-- Social Media Icons -->
+                    <div class="social-icons">
+                        <a href="https://github.com/kellatirupathi/" target="_blank" rel="noopener noreferrer" class="social-icon">
+                            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                        </a>
+                        
+                        <a href="https://www.linkedin.com/in/tirupathi-rao-kella-6b4ba41b8/" target="_blank" rel="noopener noreferrer" class="social-icon">
+                           <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        
+                        <!-- Add Twitter/X if available -->
+                        
+                        <!-- Add portfolio website if available -->
+                    </div>
                 </div>
             </div>
         </section>
@@ -1021,35 +1209,6 @@
             }
         });
 
-        // Skills circular positioning
-        document.addEventListener('DOMContentLoaded', () => {
-            const skillOrbits = document.querySelectorAll('.skill-orbit');
-            const totalSkills = skillOrbits.length;
-            const radius = 150;
-            
-            skillOrbits.forEach((orbit, index) => {
-                const angle = (360 / totalSkills) * index;
-                const x = Math.cos((angle - 90) * Math.PI / 180) * radius;
-                const y = Math.sin((angle - 90) * Math.PI / 180) * radius;
-                
-                orbit.style.transform = `translate(${x}px, ${y}px)`;
-                orbit.style.animationDelay = `${index * 0.1}s`;
-            });
-
-            // Staggered animations
-            document.querySelectorAll('.exp-card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-            });
-
-            document.querySelectorAll('.project-card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.15}s`;
-            });
-
-            document.querySelectorAll('.education-card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.2}s`;
-            });
-        });
-
         // Enhanced hover effects
         document.querySelectorAll('.exp-card, .project-card, .education-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
@@ -1072,6 +1231,14 @@
         });
 
         // Helper functions for Handlebars (demo)
+        function formatUrl(url) {
+            if (!url) return '#';
+            if (url.startsWith('http://') || url.startsWith('https://')) {
+                return url;
+            }
+            return 'https://' + url;
+        }
+
         function split(str, delimiter) {
             return str ? str.split(delimiter) : [];
         }
@@ -1082,10 +1249,6 @@
 
         function substring(str, start, end) {
             return str ? str.substring(start, end) : '';
-        }
-
-        function multiply(a, b) {
-            return a * b;
         }
     </script>
 </body>
