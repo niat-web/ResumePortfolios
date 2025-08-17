@@ -84,32 +84,65 @@
             66% { transform: translateY(20px) translateX(-20px) scale(0.9); }
         }
 
-        /* Container */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
+        /* Navigation */
+        .nav-bar {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 100;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            gap: 15px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
             position: relative;
         }
 
-        .hero-content {
-            animation: fadeInUp 1.2s ease-out;
+        .nav-dot.active {
+            background: #4facfe;
+            box-shadow: 0 0 20px rgba(79, 172, 254, 0.5);
         }
 
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 7rem);
+        .nav-dot:hover {
+            background: #4facfe;
+            transform: scale(1.2);
+        }
+
+        /* Container */
+        .portfolio-wrapper {
+            position: relative;
+        }
+
+        /* Hero Section - Split Layout */
+        .hero-section {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 0 5%;
+            gap: 60px;
+        }
+
+        .hero-left {
+            animation: slideInLeft 1.2s ease-out;
+        }
+
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: slideInRight 1.2s ease-out;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 6vw, 5rem);
             font-weight: 700;
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             -webkit-background-clip: text;
@@ -117,111 +150,448 @@
             background-clip: text;
             margin-bottom: 20px;
             letter-spacing: -0.02em;
+            line-height: 1.1;
         }
 
-        .hero h2 {
-            font-size: clamp(1.2rem, 3vw, 2rem);
+        .hero-role {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
             font-weight: 300;
             color: #a0a0a0;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             letter-spacing: 0.02em;
         }
 
-        .hero-subtitle {
+        .hero-bio {
             font-size: 1.1rem;
-            color: #707070;
-            max-width: 600px;
-            margin: 0 auto 50px;
-            animation: fadeInUp 1.2s ease-out 0.3s both;
+            color: #c0c0c0;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 500px;
         }
 
-        .contact-grid {
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: #0a0a0a;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(79, 172, 254, 0.4);
+        }
+
+        .profile-visual {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
             display: flex;
-            gap: 40px;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1.2s ease-out 0.6s both;
+            font-size: 8rem;
+            color: #0a0a0a;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(79, 172, 254, 0.3);
+            animation: float 6s ease-in-out infinite;
         }
 
-        .contact-link {
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .contact-quick {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .contact-item {
             color: #909090;
             text-decoration: none;
             font-size: 0.95rem;
             transition: all 0.3s ease;
-            padding: 10px 0;
-            position: relative;
+            padding: 8px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
 
-        .contact-link::before {
+        .contact-item:hover {
+            color: #4facfe;
+            border-color: rgba(79, 172, 254, 0.3);
+            background: rgba(79, 172, 254, 0.05);
+        }
+
+        /* Content Grid Layout */
+        .content-grid {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+            padding: 60px 5%;
+            align-items: start;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 60px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px 30px;
+            backdrop-filter: blur(20px);
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sidebar-item {
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #909090;
+            font-weight: 500;
+            border: 1px solid transparent;
+        }
+
+        .sidebar-item:hover,
+        .sidebar-item.active {
+            background: rgba(79, 172, 254, 0.1);
+            border-color: rgba(79, 172, 254, 0.2);
+            color: #4facfe;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        /* Experience - Bento Grid */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .exp-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 35px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-card::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: linear-gradient(90deg, #4facfe, #00f2fe);
-            transition: width 0.3s ease;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(79, 172, 254, 0.03), transparent);
+            transition: left 0.8s ease;
         }
 
-        .contact-link:hover {
+        .exp-card:hover::before {
+            left: 100%;
+        }
+
+        .exp-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(79, 172, 254, 0.2);
+            box-shadow: 0 20px 60px rgba(79, 172, 254, 0.1);
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .exp-title {
+            font-size: 1.3rem;
+            font-weight: 600;
             color: #ffffff;
         }
 
-        .contact-link:hover::before {
-            width: 100%;
+        .exp-period {
+            background: rgba(79, 172, 254, 0.1);
+            color: #4facfe;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
 
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
+        .exp-company {
+            font-size: 1.1rem;
+            color: #4facfe;
+            font-weight: 500;
+            margin-bottom: 8px;
         }
 
-        .scroll-indicator::before {
-            content: '';
-            width: 1px;
-            height: 30px;
-            background: #4facfe;
-            display: block;
-            margin: 0 auto 10px;
+        .exp-location {
+            color: #909090;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
         }
 
-        .scroll-indicator::after {
-            content: '';
-            width: 8px;
-            height: 8px;
-            border-right: 2px solid #4facfe;
-            border-bottom: 2px solid #4facfe;
-            transform: rotate(45deg);
-            display: block;
+        .exp-description {
+            color: #c0c0c0;
+            line-height: 1.7;
+        }
+
+        /* Projects - Masonry Layout */
+        .projects-masonry {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            grid-auto-rows: min-content;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 35px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .project-card:nth-child(3n+1) {
+            background: rgba(79, 172, 254, 0.02);
+        }
+
+        .project-card:nth-child(3n+2) {
+            background: rgba(168, 85, 247, 0.02);
+        }
+
+        .project-card:nth-child(3n+3) {
+            background: rgba(34, 197, 94, 0.02);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(79, 172, 254, 0.2);
+            box-shadow: 0 25px 70px rgba(79, 172, 254, 0.15);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .project-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a0a0a;
+            font-weight: 600;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background: rgba(79, 172, 254, 0.1);
+            border: 1px solid rgba(79, 172, 254, 0.2);
+            color: #4facfe;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: rgba(79, 172, 254, 0.2);
+            transform: scale(1.05);
+        }
+
+        .project-description {
+            color: #b0b0b0;
+            line-height: 1.7;
+        }
+
+        /* Skills - Circular Layout */
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .skills-circle {
+            position: relative;
+            width: 400px;
+            height: 400px;
             margin: 0 auto;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
+        .skill-orbit {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            cursor: pointer;
         }
 
-        /* Content Sections */
-        .content-section {
-            margin: 120px 0;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
+        .skill-orbit:hover {
+            background: rgba(79, 172, 254, 0.1);
+            border-color: rgba(79, 172, 254, 0.3);
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.2);
         }
 
-        .content-section.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .skill-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #ffffff;
+            text-align: center;
+            line-height: 1.2;
         }
 
+        .skills-grid-fallback {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            max-width: 600px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(79, 172, 254, 0.05);
+            border-color: rgba(79, 172, 254, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Education - Timeline Horizontal */
+        .education-timeline {
+            display: flex;
+            gap: 40px;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+
+        .education-card {
+            min-width: 350px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 35px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .education-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(79, 172, 254, 0.2);
+        }
+
+        .edu-degree {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .edu-major {
+            color: #4facfe;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .edu-university {
+            color: #909090;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .edu-period {
+            color: #707070;
+            font-size: 0.9rem;
+        }
+
+        /* Section Headers */
         .section-header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
         .section-number {
@@ -248,291 +618,29 @@
             margin: 0 auto;
         }
 
-        /* Summary */
-        .summary-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 60px;
-            text-align: center;
-            backdrop-filter: blur(20px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .summary-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(79, 172, 254, 0.03), transparent);
-            transition: left 1s ease;
-        }
-
-        .summary-card:hover::before {
-            left: 100%;
-        }
-
-        .summary-text {
-            font-size: 1.3rem;
-            color: #e0e0e0;
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        /* Experience */
-        .timeline {
-            position: relative;
-            padding-left: 40px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, #4facfe, #00f2fe);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 80px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 40px;
-            margin-left: 40px;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -61px;
-            top: 40px;
-            width: 20px;
-            height: 20px;
-            background: #4facfe;
-            border-radius: 50%;
-            border: 4px solid #0a0a0a;
-            box-shadow: 0 0 20px rgba(79, 172, 254, 0.5);
-        }
-
-        .timeline-item:hover {
-            background: rgba(255, 255, 255, 0.04);
-            transform: translateX(10px);
-            border-color: rgba(79, 172, 254, 0.2);
-        }
-
-        .job-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-
-        .company-name {
-            font-size: 1.1rem;
-            color: #4facfe;
-            font-weight: 500;
-            margin-bottom: 15px;
-        }
-
-        .job-meta {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .meta-item {
-            font-size: 0.9rem;
-            color: #909090;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .job-description {
-            color: #c0c0c0;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #4facfe, transparent);
-        }
-
-        .project-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-10px);
-            border-color: rgba(79, 172, 254, 0.2);
-            box-shadow: 0 20px 60px rgba(79, 172, 254, 0.1);
-        }
-
-        .project-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 15px;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .tech-tag {
-            background: rgba(79, 172, 254, 0.1);
-            border: 1px solid rgba(79, 172, 254, 0.2);
-            color: #4facfe;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .tech-tag:hover {
-            background: rgba(79, 172, 254, 0.2);
-            transform: scale(1.05);
-        }
-
-        .project-description {
-            color: #b0b0b0;
-            line-height: 1.7;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .skill-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 25px 20px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            cursor: default;
-        }
-
-        .skill-item:hover {
-            background: rgba(79, 172, 254, 0.05);
-            border-color: rgba(79, 172, 254, 0.3);
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(79, 172, 254, 0.1);
-        }
-
-        .skill-name {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #ffffff;
-        }
-
-        /* Education */
-        .education-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .education-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, #4facfe, #00f2fe);
-            border-radius: 0 0 0 20px;
-        }
-
-        .education-card:hover {
-            background: rgba(255, 255, 255, 0.04);
-            transform: translateX(10px);
-            border-color: rgba(79, 172, 254, 0.2);
-        }
-
-        .degree-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 8px;
-        }
-
-        .university-name {
-            font-size: 1.1rem;
-            color: #4facfe;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-
-        .education-period {
-            color: #909090;
-            font-size: 0.95rem;
-        }
-
         /* Animations */
-        @keyframes fadeInUp {
+        @keyframes slideInLeft {
             from {
                 opacity: 0;
-                transform: translateY(60px);
+                transform: translateX(-100px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateX(0);
             }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        /* Intersection Observer Classes */
         .fade-in {
             opacity: 0;
             transform: translateY(50px);
@@ -545,102 +653,111 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
+        @media (max-width: 1024px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+                padding: 60px 5%;
             }
 
-            .hero {
-                padding: 60px 0;
-                min-height: 80vh;
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 5%;
             }
 
-            .contact-grid {
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .sidebar-menu {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .experience-grid,
+            .projects-masonry {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-circle {
+                width: 300px;
+                height: 300px;
+            }
+
+            .education-timeline {
                 flex-direction: column;
-                gap: 20px;
                 align-items: center;
             }
 
-            .job-meta {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-                gap: 15px;
-            }
-
-            .timeline {
-                padding-left: 30px;
-            }
-
-            .timeline-item {
-                margin-left: 20px;
-                padding: 30px 25px;
-            }
-
-            .timeline-item::before {
-                left: -41px;
-            }
-
-            .content-section {
-                margin: 80px 0;
-            }
-
-            .section-header {
-                margin-bottom: 50px;
-            }
-
-            .summary-card,
-            .education-card,
-            .project-card {
-                padding: 30px 25px;
+            .education-card {
+                min-width: 100%;
+                max-width: 500px;
             }
         }
 
-        /* Ultra-smooth scrolling */
-        .smooth-scroll {
-            scroll-behavior: smooth;
+        @media (max-width: 768px) {
+            .nav-bar {
+                top: 20px;
+                right: 20px;
+            }
+
+            .profile-visual {
+                width: 200px;
+                height: 200px;
+                font-size: 5rem;
+            }
+
+            .hero-section {
+                padding: 40px 20px;
+                min-height: 80vh;
+            }
+
+            .content-grid {
+                padding: 30px 20px;
+            }
+
+            .sidebar {
+                padding: 25px 20px;
+            }
+
+            .skills-circle {
+                display: none;
+            }
+
+            .skills-grid-fallback {
+                display: grid;
+            }
         }
 
-        /* Glow effects */
-        .glow {
-            position: relative;
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .glow::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(79, 172, 254, 0.1), transparent 70%);
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            border-radius: inherit;
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
         }
 
-        .glow:hover::after {
-            opacity: 1;
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #4facfe, #00f2fe);
+            border-radius: 4px;
         }
 
-        /* Custom selection */
+        .education-timeline::-webkit-scrollbar {
+            height: 6px;
+        }
+
         ::selection {
             background: rgba(79, 172, 254, 0.3);
             color: #ffffff;
         }
     </style>
 </head>
-<body class="smooth-scroll">
+<body>
     <!-- Animated Background -->
     <div class="bg-canvas"></div>
     <div class="bg-orbs">
@@ -649,184 +766,316 @@
         <div class="orb"></div>
     </div>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>kella Tirupathi Rao</h1>
-                <h2>Fullstack Developer</h2>
-                <p class="hero-subtitle">Proficient MERN stack developer with hands-on experience building and deploying full-stack web applications. Adept at creating scalable and maintainable code, utilizing MongoDB, Express.js, React, and Node.js. Passionate about delivering high-quality user experiences and staying current with the latest industry trends. Seeking a challenging MERN Developer role to leverage expertise and contribute to innovative projects.</p>
-                <div class="contact-grid">
-                    <a href="mailto:kellatirupathirao0231@gmail.com" class="contact-link">kellatirupathirao0231@gmail.com</a>
-                    <a href="tel:06303639014" class="contact-link">06303639014</a>
-                    <span class="contact-link">Patel Nagar ramavarappadu</span>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-dot active" data-section="hero"></div>
+        <div class="nav-dot" data-section="experience"></div>
+        <div class="nav-dot" data-section="projects"></div>
+        <div class="nav-dot" data-section="skills"></div>
+        <div class="nav-dot" data-section="education"></div>
+    </nav>
+
+    <div class="portfolio-wrapper">
+        <!-- Hero Section - Split Layout -->
+        <section id="hero" class="hero-section">
+            <div class="hero-left">
+                <h1 class="hero-title">kella Tirupathi Rao</h1>
+                <h2 class="hero-role">Fullstack Developer</h2>
+                <p class="hero-bio">Proficient MERN stack developer with hands-on experience building and deploying full-stack web applications. Adept at creating scalable and maintainable code, utilizing MongoDB, Express.js, React, and Node.js. Passionate about delivering high-quality user experiences and staying current with the latest industry trends. Seeking a challenging MERN Developer role to leverage expertise and contribute to innovative projects.</p>
+                <a href="#experience" class="hero-cta">
+                    <span>Explore My Work</span>
+                    <span>→</span>
+                </a>
+            </div>
+            <div class="hero-right">
+                <div class="profile-visual">
+                    k
+                </div>
+                <div class="contact-quick">
+                    <a href="mailto:kellatirupathirao0231@gmail.com" class="contact-item">kellatirupathirao0231@gmail.com</a>
+                    <a href="tel:06303639014" class="contact-item">06303639014</a>
+                    <span class="contact-item">Patel Nagar ramavarappadu</span>
                 </div>
             </div>
-            <div class="scroll-indicator"></div>
         </section>
 
-        <!-- Experience Section -->
-        <section class="content-section fade-in">
-            <div class="section-header">
-                <div class="section-number">01</div>
-                <h3 class="section-title">Experience</h3>
-                <p class="section-subtitle">A journey through my professional career</p>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item glow">
-                    <h4 class="job-title">Software Engineer</h4>
-                    <div class="company-name">Nxtwave</div>
-                    <div class="job-meta">
-                        <div class="meta-item">
-                            <span>2025-03-05 - Present</span>
-                        </div>
-                        <div class="meta-item">
-                            <span>Vijayawada, India</span>
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <h3 class="sidebar-title">Navigation</h3>
+                <ul class="sidebar-menu">
+                    <li class="sidebar-item active" data-section="experience">Experience</li>
+                    <li class="sidebar-item" data-section="projects">Projects</li>
+                    <li class="sidebar-item" data-section="skills">Skills</li>
+                    <li class="sidebar-item" data-section="education">Education</li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Experience Section - Bento Grid -->
+                <section id="experience" class="fade-in">
+                    <div class="section-header">
+                        <div class="section-number">01</div>
+                        <h3 class="section-title">Experience</h3>
+                        <p class="section-subtitle">Professional journey and achievements</p>
+                    </div>
+                    <div class="experience-grid">
+                        <div class="exp-card">
+                            <div class="exp-header">
+                                <div class="exp-title">Software Engineer</div>
+                                <div class="exp-period">2025-03-05 - Present</div>
+                            </div>
+                            <div class="exp-company">Nxtwave</div>
+                            <div class="exp-location">Vijayawada, India</div>
+                            <div class="exp-description"></div>
                         </div>
                     </div>
-                    <div class="job-description"></div>
-                </div>
-            </div>
-        </section>
+                </section>
 
-        <!-- Projects Section -->
-        <section class="content-section fade-in">
-            <div class="section-header">
-                <div class="section-number">02</div>
-                <h3 class="section-title">Projects</h3>
-                <p class="section-subtitle">Selected works that showcase my expertise</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card glow">
-                    <h4 class="project-title">Ecommerce</h4>
-                    <div class="tech-stack">
-                        <span class="tech-tag">ReactJS</span>
-                        <span class="tech-tag">NodeJS</span>
+                <!-- Projects Section - Masonry Layout -->
+                <section id="projects" class="fade-in">
+                    <div class="section-header">
+                        <div class="section-number">02</div>
+                        <h3 class="section-title">Projects</h3>
+                        <p class="section-subtitle">Featured work and creative solutions</p>
                     </div>
-                    <div class="project-description"><ul><li><span style="background-color: rgb(255, 255, 255); color: rgb(75, 85, 99); font-size: 14px;">Developed a full-stack e-commerce website utilizing the MERN stack (MongoDB, Express.js, ReactJS, Node.js) to provide a seamless user experience.</span></li><li><span style="background-color: rgb(255, 255, 255); color: rgb(75, 85, 99); font-size: 14px;">Designed and implemented RESTful APIs using Node.js and Express.js for product catalog management, user authentication, and order processing, resulting in a 20% improvement in API response time.</span></li></ul></div>
-                </div>
-            </div>
-        </section>
+                    <div class="projects-masonry">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-title">Ecommerce</div>
+                                <div class="project-icon">E</div>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-tag">ReactJS</span>
+                                <span class="tech-tag">NodeJS</span>
+                            </div>
+                            <div class="project-description"><ul><li><span style="background-color: rgb(255, 255, 255); color: rgb(75, 85, 99); font-size: 14px;">Developed a full-stack e-commerce website utilizing the MERN stack (MongoDB, Express.js, ReactJS, Node.js) to provide a seamless user experience.</span></li><li><span style="background-color: rgb(255, 255, 255); color: rgb(75, 85, 99); font-size: 14px;">Designed and implemented RESTful APIs using Node.js and Express.js for product catalog management, user authentication, and order processing, resulting in a 20% improvement in API response time.</span></li></ul></div>
+                        </div>
+                    </div>
+                </section>
 
-        <!-- Skills Section -->
-        <section class="content-section fade-in">
-            <div class="section-header">
-                <div class="section-number">03</div>
-                <h3 class="section-title">Skills</h3>
-                <p class="section-subtitle">Technologies and tools I work with</p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-item glow">
-                    <div class="skill-name">Html, Css, JavaScript</div>
-                </div>
-                <div class="skill-item glow">
-                    <div class="skill-name">ReactJS, Nodejs</div>
-                </div>
-                <div class="skill-item glow">
-                    <div class="skill-name">MongoDB</div>
-                </div>
-                <div class="skill-item glow">
-                    <div class="skill-name">Aws</div>
-                </div>
-            </div>
-        </section>
+                <!-- Skills Section - Circular Layout -->
+                <section id="skills" class="fade-in">
+                    <div class="section-header">
+                        <div class="section-number">03</div>
+                        <h3 class="section-title">Skills</h3>
+                        <p class="section-subtitle">Technologies and expertise</p>
+                    </div>
+                    <div class="skills-container">
+                        <!-- Circular layout for larger screens -->
+                        <div class="skills-circle">
+                            <div class="skill-orbit" style="transform: rotate(0deg) translateX(150px) rotate(-0deg);">
+                                <div class="skill-name">Html, Css, JavaScript</div>
+                            </div>
+                            <div class="skill-orbit" style="transform: rotate(45deg) translateX(150px) rotate(-45deg);">
+                                <div class="skill-name">ReactJS, Nodejs</div>
+                            </div>
+                            <div class="skill-orbit" style="transform: rotate(90deg) translateX(150px) rotate(-90deg);">
+                                <div class="skill-name">MongoDB</div>
+                            </div>
+                            <div class="skill-orbit" style="transform: rotate(135deg) translateX(150px) rotate(-135deg);">
+                                <div class="skill-name">Aws</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Grid fallback for smaller screens -->
+                        <div class="skills-grid-fallback">
+                            <div class="skill-item">
+                                <div class="skill-name">Html, Css, JavaScript</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">ReactJS, Nodejs</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">MongoDB</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">Aws</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-        <!-- Education Section -->
-        <section class="content-section fade-in">
-            <div class="section-header">
-                <div class="section-number">04</div>
-                <h3 class="section-title">Education</h3>
-                <p class="section-subtitle">Academic foundation and learning</p>
-            </div>
-            <div class="education-card glow">
-                <h4 class="degree-title">BTech in EEE</h4>
-                <div class="university-name">Raghu Engineering College</div>
-                <div class="education-period">2020-03-05 - 2023-06-08</div>
-            </div>
-        </section>
+                <!-- Education Section - Horizontal Timeline -->
+                <section id="education" class="fade-in">
+                    <div class="section-header">
+                        <div class="section-number">04</div>
+                        <h3 class="section-title">Education</h3>
+                        <p class="section-subtitle">Academic foundation and learning</p>
+                    </div>
+                    <div class="education-timeline">
+                        <div class="education-card">
+                            <div class="edu-degree">BTech</div>
+                            <div class="edu-major">EEE</div>
+                            <div class="edu-university">Raghu Engineering College</div>
+                            <div class="edu-period">2020-03-05 - 2023-06-08</div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
     </div>
 
     <script>
-        // Intersection Observer for scroll animations
+        // Navigation functionality
+        const navDots = document.querySelectorAll('.nav-dot');
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        const sections = document.querySelectorAll('section');
+
+        function setActiveNav(sectionId) {
+            navDots.forEach(dot => dot.classList.remove('active'));
+            sidebarItems.forEach(item => item.classList.remove('active'));
+            
+            const navDot = document.querySelector(`[data-section="${sectionId}"]`);
+            const sidebarItem = document.querySelector(`.sidebar-item[data-section="${sectionId}"]`);
+            
+            if (navDot) navDot.classList.add('active');
+            if (sidebarItem) sidebarItem.classList.add('active');
+        }
+
+        // Click navigation
+        navDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const sectionId = dot.getAttribute('data-section');
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                    setActiveNav(sectionId);
+                }
+            });
+        });
+
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const sectionId = item.getAttribute('data-section');
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                    setActiveNav(sectionId);
+                }
+            });
+        });
+
+        // Scroll-based navigation
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: 0.3,
+            rootMargin: '-100px 0px -100px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActiveNav(entry.target.id);
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Fade-in animation observer
+        const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        // Initialize animations
+        document.querySelectorAll('.fade-in').forEach(el => {
+            fadeObserver.observe(el);
+        });
+
+        // Parallax scrolling
+        let ticking = false;
+        
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const orbs = document.querySelectorAll('.orb');
+            
+            orbs.forEach((orb, index) => {
+                const speed = 0.3 + (index * 0.2);
+                orb.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+            
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Skills circular positioning
         document.addEventListener('DOMContentLoaded', () => {
-            // Observe all fade-in elements
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
+            const skillOrbits = document.querySelectorAll('.skill-orbit');
+            const totalSkills = skillOrbits.length;
+            const radius = 150;
+            
+            skillOrbits.forEach((orbit, index) => {
+                const angle = (360 / totalSkills) * index;
+                const x = Math.cos((angle - 90) * Math.PI / 180) * radius;
+                const y = Math.sin((angle - 90) * Math.PI / 180) * radius;
+                
+                orbit.style.transform = `translate(${x}px, ${y}px)`;
+                orbit.style.animationDelay = `${index * 0.1}s`;
             });
 
-            // Add staggered animation delays
-            document.querySelectorAll('.timeline-item').forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.2}s`;
-            });
-
-            document.querySelectorAll('.project-card').forEach((card, index) => {
+            // Staggered animations
+            document.querySelectorAll('.exp-card').forEach((card, index) => {
                 card.style.animationDelay = `${index * 0.1}s`;
             });
 
-            document.querySelectorAll('.skill-item').forEach((skill, index) => {
-                skill.style.animationDelay = `${index * 0.05}s`;
+            document.querySelectorAll('.project-card').forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.15}s`;
             });
 
-            // Smooth parallax scrolling
-            let ticking = false;
-            
-            function updateParallax() {
-                const scrolled = window.pageYOffset;
-                const orbs = document.querySelectorAll('.orb');
-                
-                orbs.forEach((orb, index) => {
-                    const speed = 0.5 + (index * 0.2);
-                    orb.style.transform = `translateY(${scrolled * speed}px)`;
-                });
-                
-                ticking = false;
-            }
-
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    requestAnimationFrame(updateParallax);
-                    ticking = true;
-                }
-            });
-
-            // Enhanced hover effects
-            document.querySelectorAll('.glow').forEach(element => {
-                element.addEventListener('mouseenter', function(e) {
-                    this.style.transition = 'all 0.3s ease';
-                });
-
-                element.addEventListener('mousemove', function(e) {
-                    const rect = this.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    this.style.setProperty('--mouse-x', `${x}px`);
-                    this.style.setProperty('--mouse-y', `${y}px`);
-                });
+            document.querySelectorAll('.education-card').forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
             });
         });
 
-        // Helper functions for Handlebars (demo purposes)
+        // Enhanced hover effects
+        document.querySelectorAll('.exp-card, .project-card, .education-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
+        });
+
+        // Smooth scroll for CTA button
+        document.querySelector('.hero-cta')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector('#experience');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+                setActiveNav('experience');
+            }
+        });
+
+        // Helper functions for Handlebars (demo)
         function split(str, delimiter) {
             return str ? str.split(delimiter) : [];
         }
 
         function trim(str) {
             return str ? str.trim() : '';
+        }
+
+        function substring(str, start, end) {
+            return str ? str.substring(start, end) : '';
+        }
+
+        function multiply(a, b) {
+            return a * b;
         }
     </script>
 </body>
