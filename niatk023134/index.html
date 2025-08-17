@@ -139,10 +139,172 @@
             flex-direction: column;
             align-items: center;
             animation: slideInRight 1.2s ease-out;
+            position: relative;
+        }
+
+        /* Improved hero-right styles */
+        .profile-container {
+            position: relative;
+            margin-bottom: 40px;
+            width: 320px;
+            height: 320px;
+        }
+
+        .profile-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.15), rgba(0, 242, 254, 0.15));
+            animation: morphing 10s infinite ease-in-out alternate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        @keyframes morphing {
+            0% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            }
+            25% {
+                border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+            }
+            50% {
+                border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+            }
+            75% {
+                border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+            }
+            100% {
+                border-radius: 40% 60% 27% 73% / 40% 40% 60% 60%;
+            }
+        }
+
+        .profile-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.3) 0%, transparent 70%);
+            filter: blur(20px);
+            animation: pulse 6s infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(0.8);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+        }
+
+        .profile-visual {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7rem;
+            font-weight: 700;
+            color: #0a0a0a;
+            box-shadow: 
+                0 10px 30px rgba(79, 172, 254, 0.4),
+                inset 0 -5px 15px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .spinning-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px dashed rgba(79, 172, 254, 0.3);
+            animation: spin 20s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .contact-container {
+            background: rgba(10, 10, 15, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 35px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transform: translateY(-20px);
+        }
+
+        .contact-header {
+            font-size: 1.2rem;
+            color: #4facfe;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .contact-item {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .contact-item.full-width {
+            grid-column: span 2;
+        }
+
+        .contact-item:hover {
+            color: #4facfe;
+            border-color: rgba(79, 172, 254, 0.3);
+            background: rgba(79, 172, 254, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.15);
+        }
+
+        .contact-item svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
         }
 
         .hero-title {
-            font-size: clamp(3rem, 6vw, 5rem);
+            font-size: clamp(2rem, 4vw, 4rem);
             font-weight: 700;
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             -webkit-background-clip: text;
@@ -186,50 +348,6 @@
         .hero-cta:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(79, 172, 254, 0.4);
-        }
-
-        .profile-visual {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-            color: #0a0a0a;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 60px rgba(79, 172, 254, 0.3);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .contact-quick {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .contact-item {
-            color: #909090;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            padding: 8px 20px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .contact-item:hover {
-            color: #4facfe;
-            border-color: rgba(79, 172, 254, 0.3);
-            background: rgba(79, 172, 254, 0.05);
         }
 
         /* Content Grid Layout */
@@ -388,6 +506,8 @@
             backdrop-filter: blur(10px);
             transition: all 0.4s ease;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:nth-child(3n+1) {
@@ -459,6 +579,32 @@
         .project-description {
             color: #b0b0b0;
             line-height: 1.7;
+            flex-grow: 1; /* Pushes links to the bottom */
+        }
+
+        .project-links {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: #909090;
+            transition: color 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: #4facfe;
+        }
+
+        .project-link svg {
+            width: 16px;
+            height: 16px;
         }
 
         /* Skills - Circular Layout */
@@ -467,43 +613,6 @@
             flex-direction: column;
             align-items: center;
             gap: 60px;
-        }
-
-        .skills-circle {
-            position: relative;
-            width: 400px;
-            height: 400px;
-            margin: 0 auto;
-        }
-
-        .skill-orbit {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .skill-orbit:hover {
-            background: rgba(79, 172, 254, 0.1);
-            border-color: rgba(79, 172, 254, 0.3);
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.2);
-        }
-
-        .skill-name {
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: #ffffff;
-            text-align: center;
-            line-height: 1.2;
         }
 
         .skills-grid-fallback {
@@ -527,6 +636,14 @@
             background: rgba(79, 172, 254, 0.05);
             border-color: rgba(79, 172, 254, 0.3);
             transform: translateY(-5px);
+        }
+
+        .skill-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #ffffff;
+            text-align: center;
+            line-height: 1.2;
         }
 
         /* Education - Timeline Horizontal */
@@ -618,6 +735,37 @@
             margin: 0 auto;
         }
 
+        /* Social Media Icons */
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: rgba(79, 172, 254, 0.1);
+            border-color: rgba(79, 172, 254, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .social-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #4facfe;
+        }
+
         /* Animations */
         @keyframes slideInLeft {
             from {
@@ -659,6 +807,10 @@
                 text-align: center;
                 gap: 40px;
                 padding: 60px 5%;
+            }
+
+            .hero-left .hero-bio {
+                margin: 0 auto 40px auto;
             }
 
             .content-grid {
@@ -705,10 +857,28 @@
                 right: 20px;
             }
 
+            .profile-container {
+                width: 280px;
+                height: 280px;
+            }
+
             .profile-visual {
-                width: 200px;
-                height: 200px;
+                width: 180px;
+                height: 180px;
                 font-size: 5rem;
+            }
+
+            .contact-container {
+                padding: 20px;
+                max-width: 320px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-item.full-width {
+                grid-column: span 1;
             }
 
             .hero-section {
@@ -787,11 +957,34 @@
                 </a>
             </div>
             <div class="hero-right">
-                <div class="profile-visual">
-                    T
+                <div class="profile-container">
+                    <div class="profile-background"></div>
+                    <div class="spinning-circle"></div>
+                    <div class="profile-glow"></div>
+                    <div class="profile-visual">
+                        T
+                    </div>
                 </div>
-                <div class="contact-quick">
-                    <a href="mailto:kellatirupathirao049@gmail.com" class="contact-item">kellatirupathirao049@gmail.com</a>
+                
+                <div class="contact-container">
+                    <h3 class="contact-header">Connect With Me</h3>
+                    <div class="contact-grid">
+                        <a href="mailto:kellatirupathirao049@gmail.com" class="contact-item full-width">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <span>kellatirupathirao049@gmail.com</span>
+                        </a>
+                        
+                        
+                    </div>
+                    
+                    <!-- Social Media Icons -->
+                    <div class="social-icons">
+                        
+                        
+                        <!-- Add Twitter/X if available -->
+                        
+                        <!-- Add portfolio website if available -->
+                    </div>
                 </div>
             </div>
         </section>
@@ -911,35 +1104,6 @@
             }
         });
 
-        // Skills circular positioning
-        document.addEventListener('DOMContentLoaded', () => {
-            const skillOrbits = document.querySelectorAll('.skill-orbit');
-            const totalSkills = skillOrbits.length;
-            const radius = 150;
-            
-            skillOrbits.forEach((orbit, index) => {
-                const angle = (360 / totalSkills) * index;
-                const x = Math.cos((angle - 90) * Math.PI / 180) * radius;
-                const y = Math.sin((angle - 90) * Math.PI / 180) * radius;
-                
-                orbit.style.transform = `translate(${x}px, ${y}px)`;
-                orbit.style.animationDelay = `${index * 0.1}s`;
-            });
-
-            // Staggered animations
-            document.querySelectorAll('.exp-card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-            });
-
-            document.querySelectorAll('.project-card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.15}s`;
-            });
-
-            document.querySelectorAll('.education-card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.2}s`;
-            });
-        });
-
         // Enhanced hover effects
         document.querySelectorAll('.exp-card, .project-card, .education-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
@@ -962,6 +1126,14 @@
         });
 
         // Helper functions for Handlebars (demo)
+        function formatUrl(url) {
+            if (!url) return '#';
+            if (url.startsWith('http://') || url.startsWith('https://')) {
+                return url;
+            }
+            return 'https://' + url;
+        }
+
         function split(str, delimiter) {
             return str ? str.split(delimiter) : [];
         }
@@ -972,10 +1144,6 @@
 
         function substring(str, start, end) {
             return str ? str.substring(start, end) : '';
-        }
-
-        function multiply(a, b) {
-            return a * b;
         }
     </script>
 </body>
